@@ -1,5 +1,5 @@
 # Use the official Node.js 18 image as the base image
-FROM 18.19-alpine
+FROM mcr.microsoft.com/playwright:v1.40.0-jammy
 
 # Create a directory for the app
 WORKDIR /app
@@ -9,9 +9,6 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install 
-
-# Install playwright browsers
-RUN npx playwright install --with-deps
 
 # Copy the rest of the app files to the app directory
 COPY . .
