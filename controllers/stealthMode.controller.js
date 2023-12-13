@@ -8,14 +8,8 @@ chromium.use(stealth)
 const clientKey = config.clientKey
 
 exports.stealthMode = async (req, res) => {
-    const { url, args, proxy, slowMo, headless } = req.body;
-
-    await chromium.launch({
-        "args": args,
-        "proxy": proxy,
-        "slowMo": slowMo,
-        "headless": headless
-    }).then(async browser => {
+    const { url, options } = req.body;
+    await chromium.launch(options).then(async browser => {
         try {
             const page = await browser.newPage();
             page.setDefaultTimeout(3600000);
@@ -35,14 +29,9 @@ exports.stealthMode = async (req, res) => {
 }
 
 exports.stealthMode2CaptchaAmazon = async (req, res) => {
-    const { url, args, proxy, slowMo, headless } = req.body;
+    const { url, options} = req.body;
 
-    await chromium.launch({
-        "args": args,
-        "proxy": proxy,
-        "slowMo": slowMo,
-        "headless": headless
-    }).then(async browser => {
+    await chromium.launch(options).then(async browser => {
         try {
             const page = await browser.newPage();
             page.setDefaultTimeout(3600000);
