@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const port = process.env.PORT
 const clientKey = process.env.CLIENT_KEY
+const brave = process.env.PATH_BRAVE
+const edge = process.env.PATH_EDGE
 
 // Function convert image url to base64
 async function imageUrlToBase64(url) {
@@ -18,4 +20,4 @@ async function imageUrlToBase64(url) {
     }
 }
 
-module.exports = { port, clientKey, imageUrlToBase64 }
+module.exports = { port, clientKey, edge, brave, imageUrlToBase64 }
