@@ -28,3 +28,26 @@ Para que funcione el api solo debemos enviar un json de peticion, todas las peti
 ## Mappers
 
 Se cuenta con lo que son los mappers lo cual nos permite crear interacciones con el sitio cuando sea necesario, como por ejemplo el uso de 2captcha con amazon, de igual manera al crear un mapper si se debe seleccionar hacer con un navegador especifico y se debe de crear el endpoint para utilizar ese mapper.
+
+## Comandos Docker
+
+Son los utilizados para hacer uso de la imagen docker localmente.
+
+Construir imagen.
+```shell
+docker build -t playwright-api .
+```
+
+Utilizar contenedores con docker compose.
+```shell
+docker-compose up -d
+```
+
+Apagar contenedores con docker compose.
+```shell
+docker-compose down
+```
+
+## Notas
+
+El browser de webkit no tiene soporte para stealth asi que es el unico que no puede usar el stealthMode.

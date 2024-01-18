@@ -1,10 +1,10 @@
 const config = require("../config/config");
 
-const { chromium, firefox, webkit } = require("playwright-extra");
+const {webkit} = require("playwright");
+const { chromium, firefox } = require("playwright-extra");
 const stealth = require("puppeteer-extra-plugin-stealth")();
 chromium.use(stealth);
 firefox.use(stealth);
-webkit.use(stealth);
 
 browserChromium = async (url, options) => {
   let result;
@@ -17,6 +17,7 @@ browserChromium = async (url, options) => {
       result = await page.innerHTML("*", { waitUntil: "networkidle" });
       await page.close();
       await browser.close();
+      console.log("browser chromium")
     })
     .catch((error) => {
       result = error;
@@ -39,6 +40,7 @@ browserFirefox = async (url, options) => {
       result = await page.innerHTML("*", { waitUntil: "networkidle" });
       await page.close();
       await browser.close();
+      console.log("browser firefox")
     })
     .catch((error) => {
       result = error;
@@ -61,6 +63,7 @@ browserWebkit = async (url, options) => {
       result = await page.innerHTML("*", { waitUntil: "networkidle" });
       await page.close();
       await browser.close();
+      console.log("browser webkit")
     })
     .catch((error) => {
       result = error;
@@ -85,6 +88,7 @@ browserEdge = async (url, options) => {
       result = await page.innerHTML("*", { waitUntil: "networkidle" });
       await page.close();
       await browser.close();
+      console.log("browser edge")
     })
     .catch((error) => {
       result = error;
@@ -109,6 +113,7 @@ browserBrave = async (url, options) => {
       result = await page.innerHTML("*", { waitUntil: "networkidle" });
       await page.close();
       await browser.close();
+      console.log("browser brave")
     })
     .catch((error) => {
       result = error;

@@ -7,3 +7,4 @@ npm-debug.log
 .env
 .aws
 .gitignore
+docker-compose.yaml
