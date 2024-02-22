@@ -1,6 +1,6 @@
 const config = require("../config/config");
 
-const {webkit} = require("playwright");
+const { webkit } = require("playwright");
 const { chromium, firefox } = require("playwright-extra");
 const stealth = require("puppeteer-extra-plugin-stealth")();
 chromium.use(stealth);
@@ -11,16 +11,23 @@ browserChromium = async (url, options) => {
   await chromium
     .launch(options)
     .then(async (browser) => {
-      const page = await browser.newPage({ ignoreHTTPSErrors: false });
-      await page.setDefaultTimeout(3600000);
-      await page.goto(url);
-      result = await page.innerHTML("*", { waitUntil: "networkidle" });
-      await page.close();
-      await browser.close();
-      console.log("browser chromium")
+      try {
+        const page = await browser.newPage({ ignoreHTTPSErrors: false });
+        await page.setDefaultTimeout(3600000);
+        await page.goto(url);
+        result = await page.innerHTML("*", { waitUntil: "networkidle" });
+        await page.close();
+        await browser.close();
+        console.log("browser chromium");
+      } catch (e) {
+        result = e;
+        console.log(e);
+        browser.close();
+      }
     })
     .catch((error) => {
       result = error;
+      console.log(error);
     });
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -32,18 +39,25 @@ browserChromium = async (url, options) => {
 browserFirefox = async (url, options) => {
   let result;
   await firefox
-    .launch(options)
+    .launch({options})
     .then(async (browser) => {
-      const page = await browser.newPage({ ignoreHTTPSErrors: false });
-      await page.setDefaultTimeout(3600000);
-      await page.goto(url);
-      result = await page.innerHTML("*", { waitUntil: "networkidle" });
-      await page.close();
-      await browser.close();
-      console.log("browser firefox")
+      try {
+        const page = await browser.newPage({ ignoreHTTPSErrors: false });
+        await page.setDefaultTimeout(3600000);
+        await page.goto(url);
+        result = await page.innerHTML("*", { waitUntil: "networkidle" });
+        await page.close();
+        await browser.close();
+        console.log("browser firefox");
+      } catch (e) {
+        result = e;
+        console.log(e);
+        browser.close();
+      }
     })
     .catch((error) => {
       result = error;
+      console.log(error);
     });
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -57,16 +71,23 @@ browserWebkit = async (url, options) => {
   await webkit
     .launch(options)
     .then(async (browser) => {
-      const page = await browser.newPage({ ignoreHTTPSErrors: false });
-      await page.setDefaultTimeout(3600000);
-      await page.goto(url);
-      result = await page.innerHTML("*", { waitUntil: "networkidle" });
-      await page.close();
-      await browser.close();
-      console.log("browser webkit")
+      try {
+        const page = await browser.newPage({ ignoreHTTPSErrors: false });
+        await page.setDefaultTimeout(3600000);
+        await page.goto(url);
+        result = await page.innerHTML("*", { waitUntil: "networkidle" });
+        await page.close();
+        await browser.close();
+        console.log("browser webkit");
+      } catch (e) {
+        result = e;
+        console.log(e);
+        browser.close();
+      }
     })
     .catch((error) => {
       result = error;
+      console.log(error);
     });
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -82,16 +103,23 @@ browserEdge = async (url, options) => {
   await chromium
     .launch(options)
     .then(async (browser) => {
-      const page = await browser.newPage({ ignoreHTTPSErrors: false });
-      await page.setDefaultTimeout(3600000);
-      await page.goto(url);
-      result = await page.innerHTML("*", { waitUntil: "networkidle" });
-      await page.close();
-      await browser.close();
-      console.log("browser edge")
+      try {
+        const page = await browser.newPage({ ignoreHTTPSErrors: false });
+        await page.setDefaultTimeout(3600000);
+        await page.goto(url);
+        result = await page.innerHTML("*", { waitUntil: "networkidle" });
+        await page.close();
+        await browser.close();
+        console.log("browser edge");
+      } catch (e) {
+        result = e;
+        console.log(e);
+        browser.close();
+      }
     })
     .catch((error) => {
       result = error;
+      console.log(error);
     });
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -107,16 +135,23 @@ browserBrave = async (url, options) => {
   await chromium
     .launch(options)
     .then(async (browser) => {
-      const page = await browser.newPage({ ignoreHTTPSErrors: false });
-      await page.setDefaultTimeout(3600000);
-      await page.goto(url);
-      result = await page.innerHTML("*", { waitUntil: "networkidle" });
-      await page.close();
-      await browser.close();
-      console.log("browser brave")
+      try {
+        const page = await browser.newPage({ ignoreHTTPSErrors: false });
+        await page.setDefaultTimeout(3600000);
+        await page.goto(url);
+        result = await page.innerHTML("*", { waitUntil: "networkidle" });
+        await page.close();
+        await browser.close();
+        console.log("browser brave");
+      } catch (e) {
+        result = e;
+        console.log(e);
+        browser.close();
+      }
     })
     .catch((error) => {
       result = error;
+      console.log(error);
     });
   return new Promise((resolve, reject) => {
     setTimeout(() => {
