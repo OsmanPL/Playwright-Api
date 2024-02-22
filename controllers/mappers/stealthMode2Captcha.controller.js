@@ -74,6 +74,7 @@ exports.stealthMode2CaptchaAmazon = async (req, res) => {
         .status(200);
     })
     .catch((error) => {
-      res.send({ message: error }).status(500);
+      console.log(error)
+      res.send({ message: error.error }).status(500);
     });
 };
