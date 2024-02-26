@@ -1,15 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const stealthModeController = require("../controllers/stealthMode.controller");
-const stealthMode2CaptchaController = require("../controllers/mappers/stealthMode2Captcha.controller");
+const rotationBrowserMapper = require("../controllers/rotationBrowserMapper.controller");
 
 router.post(
-  "/stealthModeRotationBrowsers",
-  stealthModeController.stealthModeRotationBrowsers
-);
-router.post(
-  "/stealthMode2CaptchaAmazon",
-  stealthMode2CaptchaController.stealthMode2CaptchaAmazon
+  "/browser",
+  rotationBrowserMapper.rotationBrowserMapper
 );
 
 module.exports = router;

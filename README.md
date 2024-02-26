@@ -10,6 +10,7 @@ Para que funcione el api solo debemos enviar un json de peticion, todas las peti
 |---------|-----------------------------------------------------------------------------|
 | options | Las opciones que se le pueden agregar al navegador, como proxy, slowMo, etc, el unico que deberia de ir por defecto es headless:true debido a que si no no funciona el navegador |
 | url     | La url del sitio que queremos extraer                                       |
+| mapper   | El mapper que utilizara para extraer                                    |
 | browsers | Listado de navegadores que queremos utilizar para la extracción, existen chromium, firefox, webkit, edge y brave, si el dato no se envia en el json se seleccionara un navegador al azar para cada peticion                    |
 
 ### Ejemplo
@@ -21,7 +22,8 @@ Para que funcione el api solo debemos enviar un json de peticion, todas las peti
     "headless":true
 },
 "url":"https://httpbin.org/get",
-"browsers":["chromium","brave","edge","firefox","webkit"]
+"browsers":["chromium","brave","edge","firefox","webkit"],
+"mapper": "rotationBrowsers"
 }
 ```
 

@@ -20,4 +20,10 @@ async function imageUrlToBase64(url) {
     }
 }
 
-module.exports = { port, clientKey, edge, brave, imageUrlToBase64 }
+// Function sleep
+var sleep = function(ms){
+    var esperarHasta = new Date().getTime() + ms;
+    while(new Date().getTime() < esperarHasta) continue;
+};
+
+module.exports = { port, clientKey, edge, brave, imageUrlToBase64, sleep }
