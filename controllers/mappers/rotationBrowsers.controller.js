@@ -42,7 +42,6 @@ exports.launchBrowser = async (browserType, url, options) => {
         result = await page.innerHTML("*", { waitUntil: "networkidle" });
         await page.close();
         await browser.close();
-        console.log(`Working with browser: ${browserType} and url: ${url}`);
       } catch (e) {
         result = e;
         console.log(e);
