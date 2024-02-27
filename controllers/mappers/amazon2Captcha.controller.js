@@ -1,11 +1,9 @@
 const axios = require("axios");
 const config = require("../../config/config");
 
-const { webkit } = require("playwright");
-const { chromium, firefox } = require("playwright-extra");
+const { chromium, firefox,webkit } = require("playwright-extra");
 const stealth = require("puppeteer-extra-plugin-stealth")();
 chromium.use(stealth);
-firefox.use(stealth);
 
 const clientKey = config.clientKey;
 
@@ -14,16 +12,11 @@ exports.stealthMode2CaptchaAmazon = async (browserType, url, options) => {
   let result;
   let newOptions = options;
 
-  let launchBrowser;
+  let launchBrowser=chromium;
 
   if (browserType === "edge" || browserType === "brave") {
     newOptions.executablePath =
       browserType === "edge" ? config.edge : config.brave;
-    launchBrowser = chromium;
-  }
-
-  if (browserType === "chromium") {
-    launchBrowser = chromium;
   }
 
   if (browserType === "webkit") {
@@ -34,6 +27,13 @@ exports.stealthMode2CaptchaAmazon = async (browserType, url, options) => {
     launchBrowser = firefox;
   }
 
+  var printProxy = "null";
+  if(options.proxy != null){
+    printProxy = options.proxy.server;
+  }
+  console.log(
+    `Working with browser: ${browserType}, url: ${url} and proxy: ${printProxy}`
+  );
   await launchBrowser
     .launch(options)
     .then(async (browser) => {
@@ -121,8 +121,8 @@ exports.stealthMode2CaptchaAmazon = async (browserType, url, options) => {
                   taskId: task,
                 })
                 .then(function (response) {
-                  console.log(response.data);
                   if (response.data.status != "processing") {
+                    console.log(response.data);
                     solve_Ready = false;
                     if (response.data.solution != null) {
                       text = response.data.solution.text;
@@ -138,10 +138,10 @@ exports.stealthMode2CaptchaAmazon = async (browserType, url, options) => {
             }
           }
         }
+        config.sleep(10000);
         result = await page.innerHTML("*", { waitUntil: "networkidle" });
         await page.close();
         await browser.close();
-        console.log(`browser ${browserType}`);
       } catch (e) {
         result = e;
         console.log(e);
