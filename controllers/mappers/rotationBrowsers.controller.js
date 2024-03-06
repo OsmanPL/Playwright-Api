@@ -38,7 +38,6 @@ exports.launchBrowser = async (browserType, url, options) => {
         const page = await browser.newPage({ ignoreHTTPSErrors: false });
         await page.setDefaultTimeout(3600000);
         await page.goto(url);
-        config.sleep(60000)
         result = await page.innerHTML("*", { waitUntil: "networkidle" });
         await page.close();
         await browser.close();
