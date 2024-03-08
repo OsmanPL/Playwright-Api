@@ -1,7 +1,7 @@
 const axios = require("axios");
 const config = require("../../config/config");
 
-const { chromium, firefox,webkit } = require("playwright-extra");
+const { chromium, firefox, webkit } = require("playwright-extra");
 const stealth = require("puppeteer-extra-plugin-stealth")();
 chromium.use(stealth);
 
@@ -12,7 +12,7 @@ exports.stealthMode2CaptchaAmazon = async (browserType, url, options) => {
   let result;
   let newOptions = options;
 
-  let launchBrowser=chromium;
+  let launchBrowser = chromium;
 
   if (browserType === "edge" || browserType === "brave") {
     newOptions.executablePath =
@@ -28,7 +28,7 @@ exports.stealthMode2CaptchaAmazon = async (browserType, url, options) => {
   }
 
   var printProxy = "null";
-  if(options.proxy != null){
+  if (options.proxy != null) {
     printProxy = options.proxy.server;
   }
   console.log(
@@ -137,6 +137,11 @@ exports.stealthMode2CaptchaAmazon = async (browserType, url, options) => {
               await page.click(`button[type="submit"]`);
             }
           }
+        }
+
+        const existMulti = await page.$(".olp-text-box");
+        if (existMulti != null) {
+          await page.click(".olp-text-box");
         }
         config.sleep(10000);
         result = await page.innerHTML("*", { waitUntil: "networkidle" });
